@@ -12,6 +12,10 @@ db.connect(connectionString)
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.log(err));
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+})
 app.use(express.json());
 app.use('/api/citizens', citizens);
 app.use('/api/cities', cities);
